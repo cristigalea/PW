@@ -1,0 +1,99 @@
+<h2 class="title text-primary">Hello, welcome to PatientWatch</h2>
+<br/>
+<br/>
+<div class="jumbotron col-md-6 col-md-offset-3 col-md-12" ng-controller="MainController">
+
+    <!-- Default text -->
+
+    <p ng-hide="signedIn()">
+        PatientWatch is a first-class patient doctor-patient management system.
+        The system allows the
+        <span class="text-primary">
+            patients
+        </span>
+        to connect with their doctors, ask questions and notify when taking treatments.
+        The system allows the
+        <span class="text-primary">
+            doctors
+        </span>
+        to monitor their patients, assign them treatments and answer their question.
+    </p>
+    <p ng-hide="signedIn()">
+        <a class="text-info" href="#/login">
+            <i class="glyphicon glyphicon-log-in"></i>
+            Login now
+        </a>
+    </p>
+    <p ng-hide="signedIn()">If you don't have an account please use the
+        <a class="text-info" href="#/register">
+            <i class="glyphicon glyphicon-user"></i>
+            register
+        </a>
+        function
+    </p>
+
+    <!-- Patient text -->
+    <div ng-show="signedIn()">
+        <p ng-show="isPatient">
+            Welcome {{patientName}} !!
+        </p>
+        <p ng-show="isPatient">
+            <i class="glyphicon glyphicon-warning-sign"></i>
+            If this is the first time you're loggin in please make sure to complete your
+            <a class="text-info" href="#/patientProfile"> profile</a>
+            .
+        </p>
+        <p ng-show="isPatient">
+            Feel free to browse your
+            <a  class="text-info" href="#/viewTreatments">
+                treatments
+            </a>
+            , update them or consult the
+            <a class="text-info" href="#/viewDoctors">
+                doctors
+            </a>
+            list to make an appointment.
+        </p>
+        <p ng-show="isPatient">
+            If you have a question make sure you access the
+            <a class="text-info" href="#/chat">
+                chat
+            </a>
+            section.
+        </p>
+    </div>
+    
+    <!-- Doctor text -->
+    <div ng-show="signedIn()">
+        <p ng-show="!isPatient">
+            Welcom Dr. {{doctorName}} !!
+        </p>
+        <p ng-show="!isPatient">
+            <i class="glyphicon glyphicon-warning-sign"></i>
+            If this is the first time you're loggin in please make sure to complete your
+            <a class="text-info" href="#/doctorProfile">
+                profile
+            </a>
+            .
+        </p>
+        <p ng-show="!isPatient">
+            Feel free to browse your
+            <a class="text-info" href="#/viewPatients">
+                patients
+            </a>
+            , add / update / consult the
+            <a class="text-info" href="#/doctorTreatments">
+                treatments
+            </a>
+            .
+        </p>
+        <p ng-show="!isPatient">
+            If you have some free time please make sure to access the
+            <a class="text-info" href="#/chat">
+                chat
+            </a>
+            to provide your expertise to the patients.
+        </p>
+    </div>
+</div>
+<div class="clearfix"></div>

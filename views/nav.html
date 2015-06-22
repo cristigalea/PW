@@ -1,0 +1,54 @@
+<nav class="navbar navbar-primary" ng-controller="NavController">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/">PatientWatch</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul ng-show="isPatient" class="nav navbar-nav navbar-left">
+                <li ng-show="signedIn()"><a href="#/patientProfile">My Profile</a></li>
+                <li ng-show="signedIn()"><a href="#/viewTreatments">My Treatments</a></li>
+                <li ng-show="signedIn()"><a href="#/viewDoctors">View Doctors</a></li>
+                <li ng-show="signedIn()"><a class="text-warning" href="#/chat">Chat</a></li>
+            </ul>
+            <ul ng-show="!isPatient" class="nav navbar-nav navbar-left">
+                <li ng-show="signedIn()"><a href="#/doctorProfile">My Profile</a></li>
+                <li ng-show="signedIn()"><a href="#/doctorTreatments">View Treatments</a></li>
+                <li ng-show="signedIn()"><a href="#/viewPatients">View Patients</a></li>
+                <li ng-show="signedIn()"><a class="text-warning" href="#/chat">Chat</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-hide="signedIn()"><a href="#/login">Login</a></li>
+                <li ng-hide="signedIn()"><a href="#/register">Register</a></li>
+
+                <li ng-show="signedIn()" class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                        <img ng-src="{{currentUser.profile.gravatar}}" class="img-circle gravatar">
+                        &nbsp;
+                        {{currentUser.profile.name}}
+                        <span class="mdi-navigation-expand-more"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="" data-toggle="modal" data-target="#pasModal">
+                                <i class="mdi-action-lock"></i> Change Password
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" ng-click="logout()">
+                                <i class="mdi-action-exit-to-app"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>

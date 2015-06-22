@@ -1,0 +1,61 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="localLib/boot/css/bootstrap.css">
+    <link rel="stylesheet" href="localLib/toaster.css">
+    <link rel="stylesheet" href="localLib/mat/css/material.css">
+    <link rel="stylesheet" href="localLib/mat/css/ripples.css">
+
+    <link rel="stylesheet" href="styles/main.css">
+
+</head>
+<body ng-app="TaskNinjaApp">
+
+<toaster-container toaster-options="{'time-out': 3000, 'close-button': true}"></toaster-container>
+
+<div ng-include="'views/nav.html'"></div>
+<div class="jumbotron">
+    <div ng-view=""></div>
+</div>
+
+<script src="localLib/jquery-2.1.3.js"></script>
+<script src="localLib/boot/js/bootstrap.js"></script>
+
+<script src="localLib/angular.js"></script>
+<script src="localLib/angular-animate.js"></script>
+<script src="localLib/angular-resource.js"></script>
+<script src="localLib/angular-route.js"></script>
+
+<script src="localLib/firebase.js"></script>
+<script src="localLib/angularfire.js"></script>
+
+<script src="localLib/toaster.js"></script>
+
+<script src="localLib/mat/js/material.js"></script>
+<script src="localLib/mat/js/ripples.js"></script>
+
+
+<script>
+    $(document).ready(function() {
+        $.material.init();
+    });
+</script>
+
+<script src="scripts/app.js"></script>
+
+<script src="scripts/controllers/navCtrl.js"></script>
+<script src="scripts/controllers/doctorCtrl.js"></script>
+<script src="scripts/controllers/patientCtrl.js"></script>
+<script src="scripts/controllers/authCtrl.js"></script>
+<script src="scripts/controllers/mainCtrl.js"></script>
+<script src="scripts/controllers/chatCtrl.js"></script>
+
+<script src="scripts/services/authService.js"></script>
+
+</body>
+</html>

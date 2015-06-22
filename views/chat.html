@@ -1,0 +1,141 @@
+<h2 class="text-center text-primary">PatientWatch Chat</h2>
+<br/>
+<div class="chat-wrapper col-md-6 col-md-offset-3 col-sm-12">
+    <div class="conversation-wrapper" ng-repeat="chatMessage in chatMessages">
+        <!-- IF DOCTOR-->
+        <div ng-if="chatMessage.senderType == 'doc' && chatMessage.senderId != currentUserId" class="col-md-2 text-primary chat-user-name">
+            <i class="glyphicon glyphicon-star"></i>
+            {{chatMessage.senderName}}
+        </div>
+
+        <!-- IF PATIENT-->
+        <div ng-if="chatMessage.senderType == 'pat' && chatMessage.senderId != currentUserId" class="col-md-2 text-info chat-user-name">
+            <i class="glyphicon glyphicon-user"></i>
+            {{chatMessage.senderName}}
+        </div>
+
+        <!-- IF CURENT USER-->
+        <div ng-if="chatMessage.senderId == currentUserId" class="col-md-2 text-warning chat-user-name">
+            <i class="glyphicon glyphicon-user"></i>
+            {{chatMessage.senderName}}
+        </div>
+
+        <div class="col-md-8 chat-conversation-text">
+            {{chatMessage.messageText}}
+        </div>
+        <div class="col-md-2 chat-conversation-timestamp">
+            {{chatMessage.messageTime}}
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <!--<div class="conversation-wrapper">-->
+        <!--<div class="col-md-2 text-primary chat-user-name">-->
+            <!--<i class="glyphicon glyphicon-star"></i>-->
+            <!--Dr. John Doe-->
+        <!--</div>-->
+        <!--<div class="col-md-8 chat-conversation-text">-->
+            <!--Hello dear patients. If you have any questions feel free to ask me. I will be available for the next 2 hours.-->
+        <!--</div>-->
+        <!--<div class="col-md-2 chat-conversation-timestamp">-->
+            <!--6/8/2015 4:00 PM-->
+        <!--</div>-->
+        <!--<div class="clearfix"></div>-->
+    <!--</div>-->
+
+    <!--<div class="conversation-wrapper">-->
+        <!--<div class="col-md-2 text-info chat-user-name">-->
+            <!--<i class="glyphicon glyphicon-user"></i>-->
+            <!--Lumi Cojocea-->
+        <!--</div>-->
+        <!--<div class="col-md-8 chat-conversation-text">-->
+            <!--Hello doctor. I have a nasty cold that I can't get rid of. I tried avoiding to take antibiotics and only took some ibuprofen.-->
+            <!--My fever was not high because of this but I still cough very bad. Please help me.-->
+        <!--</div>-->
+        <!--<div class="col-md-2 chat-conversation-timestamp">-->
+            <!--6/8/2015 4:15 PM-->
+        <!--</div>-->
+        <!--<div class="clearfix"></div>-->
+    <!--</div>-->
+
+    <!--<div class="conversation-wrapper">-->
+        <!--<div class="col-md-2 text-info chat-user-name">-->
+            <!--<i class="glyphicon glyphicon-user"></i>-->
+            <!--Lumi Cojocea-->
+        <!--</div>-->
+        <!--<div class="col-md-8 chat-conversation-text">-->
+            <!--I think it would be best if you could make me an appointment to examine me.-->
+        <!--</div>-->
+        <!--<div class="col-md-2 chat-conversation-timestamp">-->
+            <!--6/8/2015 4:17 PM-->
+        <!--</div>-->
+        <!--<div class="clearfix"></div>-->
+    <!--</div>-->
+
+    <!--<div class="conversation-wrapper">-->
+        <!--<div class="col-md-2 text-primary chat-user-name">-->
+            <!--<i class="glyphicon glyphicon-star"></i>-->
+            <!--Dr. John Doe-->
+        <!--</div>-->
+        <!--<div class="col-md-8 chat-conversation-text">-->
+            <!--Hello Luminita. I made an appointment for you. I will be expecting you tommorrow at 3 PM.-->
+            <!--In the mean time continue with ibuprofen and drink some lemon tea.-->
+        <!--</div>-->
+        <!--<div class="col-md-2 chat-conversation-timestamp">-->
+            <!--6/8/2015 4:20 PM-->
+        <!--</div>-->
+        <!--<div class="clearfix"></div>-->
+    <!--</div>-->
+
+    <!--<div class="conversation-wrapper">-->
+        <!--<div class="col-md-2 text-warning chat-user-name">-->
+            <!--<i class="glyphicon glyphicon-user"></i>-->
+            <!--Cristi Galea-->
+        <!--</div>-->
+        <!--<div class="col-md-8 chat-conversation-text">-->
+            <!--Doctor, I have a bad back-pain. What should I do.-->
+        <!--</div>-->
+        <!--<div class="col-md-2 chat-conversation-timestamp">-->
+            <!--6/8/2015 4:42 PM-->
+        <!--</div>-->
+        <!--<div class="clearfix"></div>-->
+    <!--</div>-->
+
+    <!--<div class="conversation-wrapper">-->
+        <!--<div class="col-md-2 text-primary chat-user-name">-->
+            <!--<i class="glyphicon glyphicon-star"></i>-->
+            <!--Dr. John Doe-->
+        <!--</div>-->
+        <!--<div class="col-md-8 chat-conversation-text">-->
+            <!--Hello Cristi. Take some ibuprofen for the pain and please contact my colleague Dr. Jane Doe for an appointment-->
+        <!--</div>-->
+        <!--<div class="col-md-2 chat-conversation-timestamp">-->
+            <!--6/8/2015 4:50 PM-->
+        <!--</div>-->
+        <!--<div class="clearfix"></div>-->
+    <!--</div>-->
+
+    <!--<div class="conversation-wrapper">-->
+        <!--<div class="col-md-2 text-warning chat-user-name">-->
+            <!--<i class="glyphicon glyphicon-user"></i>-->
+            <!--Cristi Galea-->
+        <!--</div>-->
+        <!--<div class="col-md-8 chat-conversation-text">-->
+            <!--Thank you-->
+        <!--</div>-->
+        <!--<div class="col-md-2 chat-conversation-timestamp">-->
+            <!--6/8/2015 4:55 PM-->
+        <!--</div>-->
+        <!--<div class="clearfix"></div>-->
+    <!--</div>-->
+
+</div>
+<div class="chat-send-wrapper col-md-6 col-md-offset-3 col-sm-12">
+    <div class="col-md-10">
+        <textarea id="newMessageText"></textarea>
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-info" ng-click="sendMessage()">Send</button>
+    </div>
+</div>
+<div class="clearfix"></div>

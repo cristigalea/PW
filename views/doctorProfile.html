@@ -1,0 +1,107 @@
+<h2 class="text-center text-primary">Doctor Profile</h2>
+<br/>
+<div class="panel col-md-6 col-md-offset-3">
+    <div class="panel-header">
+        <h3 class="text-center">Dr. John Doe</h3>
+        <br/>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-12">
+            <div class="col-md-2 profileLabel">
+                <label for="doctorName" class="">Name</label>
+            </div>
+            <div class="col-md-10">
+                <input id="doctorName" type="text" class="form-control" value="John Doe">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-2 profileLabel">
+                <label for="startTime">Available from</label>
+            </div>
+            <div class="col-md-8">
+                <input id="startTime" type="number" min="0" max="24" class="form-control" value="10"/>
+            </div>
+            <div class="col-md-2">
+                <select class="form-control">
+                    <option value="AM" selected="selected">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-2 profileLabel">
+                <label for="endTime">Available to</label>
+            </div>
+            <div class="col-md-8">
+                <input id="endTime" type="number" min="0" max="24" class="form-control" value="4"/>
+            </div>
+            <div class="col-md-2">
+                <select class="form-control">
+                    <option value="AM">AM</option>
+                    <option value="PM" selected="selected">PM</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-2 profileLabel">
+                <label>Available on</label>
+            </div>
+            <div class="col-md-10 profileLabel">
+                <label for="chMonday">Mo</label>
+                <input type="checkbox" id="chMonday" checked="checked">
+                &nbsp;&nbsp;&nbsp;
+                <label for="chTuesday">Tu</label>
+                <input type="checkbox" id="chTuesday" checked="checked">
+                &nbsp;&nbsp;&nbsp;
+                <label for="chWednesday">We</label>
+                <input type="checkbox" id="chWednesday">
+                &nbsp;&nbsp;&nbsp;
+                <label for="chThursday">Th</label>
+                <input type="checkbox" id="chThursday" checked="checked">
+                &nbsp;&nbsp;&nbsp;
+                <label for="chFriday">Fr</label>
+                <input type="checkbox" id="chFriday" checked="checked">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-2 profileLabel">
+                <label>Specialization</label>
+            </div>
+            <div class="col-md-10" style="margin-top: 10px;">
+                <div class="col-md-12">
+                    <input id="orl" type="checkbox">
+                    <label for="orl">ORL</label>
+                </div>
+                <div class="col-md-12">
+                    <input id="cardio" type="checkbox">
+                    <label for="cardio">Cardiology</label>
+                </div>
+                <div class="col-md-12">
+                    <input id="neuro" type="checkbox">
+                    <label for="neuro">Neurology</label>
+                </div>
+                <div class="col-md-12">
+                    <input id="general" type="checkbox">
+                    <label for="general">Generalist</label>
+                </div>
+                <div class="col-md-12">
+                    <input id="surgeon" type="checkbox">
+                    <label for="surgeon">Surgeon</label>
+                </div>
+                <div class="col-md-12">
+                    <input id="pedi" type="checkbox">
+                    <label for="pedi">Pediatric Doctor</label>
+                </div>
+                <div class="col-md-12">
+                    <input id="trauma" type="checkbox">
+                    <label for="trauma">Trauma</label>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="col-md-3 col-md-offset-9">
+            <button class="btn btn-warning">Update profile</button>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
