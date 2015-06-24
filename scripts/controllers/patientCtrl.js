@@ -24,5 +24,15 @@ app.controller('PatientController', function($scope, $location, FURL, $firebase,
             toaster.pop('error', "An error has occured");
             console.log(error);
         })
+    };
+
+
+    $scope.doctorsList = $firebase(ref.child('doctorProfiles')).$asArray();
+
+    $scope.makeAppointment = function (key) {
+
+        //TO DO
+        //
+        console.log(key);
     }
 });

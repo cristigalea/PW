@@ -3,72 +3,107 @@
 <div class="panel col-md-6 col-md-offset-3">
     <div class="panel-header">
         <br/>
-        <input type="text" class="form-control" placeholder="Search">
+        <input type="text" class="form-control" placeholder="Search" ng-model="search">
         <h3 class="text-center"></h3>
         <br/>
     </div>
     <div class="panel-body">
-        <div class="col-md-12 patient-wrapper">
-            <div class="col-md-12"><h3 class="text-info">Dr. John Doe</h3></div>
+        <div ng-repeat="doctor in doctorsList| filter:search">
+            <div class="col-md-12 patient-wrapper">
+                <div class="col-md-12"><h3 class="text-info">Dr. {{doctor.doctorName}}</h3></div>
 
-            <div class="col-md-6">Available from: <span class="text-primary">10 AM</span></div>
-            <div class="col-md-6">Available to: <span class="text-primary">4 PM</span></div>
+                <div class="col-md-6">Available from: <span class="text-primary"> {{doctor.availableFromValue}}&nbsp;{{doctor.availableFromType}}</span></div>
+                <div class="col-md-6">Available to: <span class="text-primary"> {{doctor.availableToValue}}&nbsp;{{doctor.availableToType}}</span></div>
 
-            <div class="col-md-12">
-                Available on:
-                <span class="text-info">Mo, Tu, Th, Fr</span>
-            </div>
+                <div class="col-md-12">
+                    Available on:
+                    <span class="text-info">
+                        <span ng-show="doctor.availableOn.Mo">Mo </span>
+                        <span ng-show="doctor.availableOn.Tu">Tu </span>
+                        <span ng-show="doctor.availableOn.We">We </span>
+                        <span ng-show="doctor.availableOn.Th">Th </span>
+                        <span ng-show="doctor.availableOn.Fr">Fr </span>
+                    </span>
+                </div>
 
-            <div class="col-md-12">
-                Specializations:
-                <span class="text-info">ORL, Generalist</span>
-            </div>
-            <div class="col-md-6 col-md-offset-6">
-                <button class="btn btn-warning">Request appointment</button>
-            </div>
-        </div>
-
-        <div class="col-md-12 patient-wrapper">
-            <div class="col-md-12"><h3 class="text-info">Dr. Cristi Galea</h3></div>
-
-            <div class="col-md-6">Available from: <span class="text-primary">12 AM</span></div>
-            <div class="col-md-6">Available to: <span class="text-primary">4 PM</span></div>
-
-            <div class="col-md-12">
-                Available on:
-                <span class="text-info">Mo, Fr</span>
-            </div>
-
-            <div class="col-md-12">
-                Specializations:
-                <span class="text-info">Cardiology, Neurology, Surgeon</span>
-            </div>
-
-            <div class="col-md-6 col-md-offset-6">
-                <button class="btn btn-warning">Request appointment</button>
+                <div class="col-md-12">
+                    Specializations:
+                    <span class="text-info">
+                        <span ng-show="doctor.specializationList.Orl">ORL </span>
+                        <span ng-show="doctor.specializationList.Card">Cardiology </span>
+                        <span ng-show="doctor.specializationList.Neur">Neurology </span>
+                        <span ng-show="doctor.specializationList.Gene">Generalist </span>
+                        <span ng-show="doctor.specializationList.Surg">Surgeon </span>
+                        <span ng-show="doctor.specializationList.Pedi">Pediatrist </span>
+                        <span ng-show="doctor.specializationList.Trau">Trauma </span>
+                    </span>
+                </div>
+                <div class="col-md-6 col-md-offset-6">
+                    <button class="btn btn-warning" ng-click="makeAppointment(doctor.$id)">Request appointment</button>
+                </div>
             </div>
         </div>
+        <!--<div class="col-md-12 patient-wrapper">-->
+            <!--<div class="col-md-12"><h3 class="text-info">Dr. John Doe</h3></div>-->
 
-        <div class="col-md-12 patient-wrapper">
-            <div class="col-md-12"><h3 class="text-info">Dr. Jane Doe</h3></div>
+            <!--<div class="col-md-6">Available from: <span class="text-primary">10 AM</span></div>-->
+            <!--<div class="col-md-6">Available to: <span class="text-primary">4 PM</span></div>-->
 
-            <div class="col-md-6">Available from: <span class="text-primary">9 AM</span></div>
-            <div class="col-md-6">Available to: <span class="text-primary">2 PM</span></div>
+            <!--<div class="col-md-12">-->
+                <!--Available on:-->
+                <!--<span class="text-info">Mo, Tu, Th, Fr</span>-->
+            <!--</div>-->
 
-            <div class="col-md-12">
-                Available on:
-                <span class="text-info">Mo, Tu, We, Th, Fr</span>
-            </div>
+            <!--<div class="col-md-12">-->
+                <!--Specializations:-->
+                <!--<span class="text-info">ORL, Generalist</span>-->
+            <!--</div>-->
+            <!--<div class="col-md-6 col-md-offset-6">-->
+                <!--<button class="btn btn-warning">Request appointment</button>-->
+            <!--</div>-->
+        <!--</div>-->
 
-            <div class="col-md-12">
-                Specializations:
-                <span class="text-info">Generalist, Pediatric Doctor</span>
-            </div>
+        <!--<div class="col-md-12 patient-wrapper">-->
+            <!--<div class="col-md-12"><h3 class="text-info">Dr. Cristi Galea</h3></div>-->
 
-            <div class="col-md-6 col-md-offset-6">
-                <button class="btn btn-warning">Request appointment</button>
-            </div>
-        </div>
+            <!--<div class="col-md-6">Available from: <span class="text-primary">12 AM</span></div>-->
+            <!--<div class="col-md-6">Available to: <span class="text-primary">4 PM</span></div>-->
+
+            <!--<div class="col-md-12">-->
+                <!--Available on:-->
+                <!--<span class="text-info">Mo, Fr</span>-->
+            <!--</div>-->
+
+            <!--<div class="col-md-12">-->
+                <!--Specializations:-->
+                <!--<span class="text-info">Cardiology, Neurology, Surgeon</span>-->
+            <!--</div>-->
+
+            <!--<div class="col-md-6 col-md-offset-6">-->
+                <!--<button class="btn btn-warning">Request appointment</button>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="col-md-12 patient-wrapper">-->
+            <!--<div class="col-md-12"><h3 class="text-info">Dr. Jane Doe</h3></div>-->
+
+            <!--<div class="col-md-6">Available from: <span class="text-primary">9 AM</span></div>-->
+            <!--<div class="col-md-6">Available to: <span class="text-primary">2 PM</span></div>-->
+
+            <!--<div class="col-md-12">-->
+                <!--Available on:-->
+                <!--<span class="text-info">Mo, Tu, We, Th, Fr</span>-->
+            <!--</div>-->
+
+            <!--<div class="col-md-12">-->
+                <!--Specializations:-->
+                <!--<span class="text-info">Generalist, Pediatric Doctor</span>-->
+            <!--</div>-->
+
+            <!--<div class="col-md-6 col-md-offset-6">-->
+                <!--<button class="btn btn-warning">Request appointment</button>-->
+            <!--</div>-->
+        <!--</div>-->
 
     </div>
 
