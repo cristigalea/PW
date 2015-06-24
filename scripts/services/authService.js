@@ -13,7 +13,7 @@ app.factory('AuthService', function (FURL, $firebaseAuth, $firebase) {
             var profile = {
                 name: user.name,
                 email: user.email,
-                type: "pat",
+                type: user.type,
                 gravatar: get_gravatar(user.email, 40)
             };
 

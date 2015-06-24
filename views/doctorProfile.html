@@ -2,7 +2,7 @@
 <br/>
 <div class="panel col-md-6 col-md-offset-3">
     <div class="panel-header">
-        <h3 class="text-center">Dr. John Doe</h3>
+        <h3 class="text-center">Dr. {{doctor.doctorName}}</h3>
         <br/>
     </div>
     <div class="panel-body">
@@ -11,7 +11,7 @@
                 <label for="doctorName" class="">Name</label>
             </div>
             <div class="col-md-10">
-                <input id="doctorName" type="text" class="form-control" value="John Doe">
+                <input id="doctorName" type="text" class="form-control" ng-model="doctor.doctorName">
             </div>
         </div>
         <div class="col-md-12">
@@ -19,11 +19,11 @@
                 <label for="startTime">Available from</label>
             </div>
             <div class="col-md-8">
-                <input id="startTime" type="number" min="0" max="24" class="form-control" value="10"/>
+                <input id="startTime" type="number" min="0" max="24" class="form-control" ng-model="doctor.availableFromValue"/>
             </div>
             <div class="col-md-2">
-                <select class="form-control">
-                    <option value="AM" selected="selected">AM</option>
+                <select class="form-control" ng-model="doctor.availableFromType">
+                    <option value="AM">AM</option>
                     <option value="PM">PM</option>
                 </select>
             </div>
@@ -33,12 +33,12 @@
                 <label for="endTime">Available to</label>
             </div>
             <div class="col-md-8">
-                <input id="endTime" type="number" min="0" max="24" class="form-control" value="4"/>
+                <input id="endTime" type="number" min="0" max="24" class="form-control" ng-model="doctor.availableToValue"/>
             </div>
             <div class="col-md-2">
-                <select class="form-control">
+                <select class="form-control" ng-model="doctor.availableToType">
                     <option value="AM">AM</option>
-                    <option value="PM" selected="selected">PM</option>
+                    <option value="PM">PM</option>
                 </select>
             </div>
         </div>
@@ -48,59 +48,59 @@
             </div>
             <div class="col-md-10 profileLabel">
                 <label for="chMonday">Mo</label>
-                <input type="checkbox" id="chMonday" checked="checked">
+                <input type="checkbox" id="chMonday" ng-model="doctor.availableOn.Mo">
                 &nbsp;&nbsp;&nbsp;
                 <label for="chTuesday">Tu</label>
-                <input type="checkbox" id="chTuesday" checked="checked">
+                <input type="checkbox" id="chTuesday" ng-model="doctor.availableOn.Tu">
                 &nbsp;&nbsp;&nbsp;
                 <label for="chWednesday">We</label>
-                <input type="checkbox" id="chWednesday">
+                <input type="checkbox" id="chWednesday" ng-model="doctor.availableOn.We">
                 &nbsp;&nbsp;&nbsp;
                 <label for="chThursday">Th</label>
-                <input type="checkbox" id="chThursday" checked="checked">
+                <input type="checkbox" id="chThursday" ng-model="doctor.availableOn.Th">
                 &nbsp;&nbsp;&nbsp;
                 <label for="chFriday">Fr</label>
-                <input type="checkbox" id="chFriday" checked="checked">
+                <input type="checkbox" id="chFriday" ng-model="doctor.availableOn.Fr">
             </div>
         </div>
         <div class="col-md-12">
             <div class="col-md-2 profileLabel">
-                <label>Specialization</label>
+                <label>Specializations</label>
             </div>
             <div class="col-md-10" style="margin-top: 10px;">
                 <div class="col-md-12">
-                    <input id="orl" type="checkbox">
+                    <input id="orl" type="checkbox" ng-model="doctor.specializationList.Orl">
                     <label for="orl">ORL</label>
                 </div>
                 <div class="col-md-12">
-                    <input id="cardio" type="checkbox">
+                    <input id="cardio" type="checkbox" ng-model="doctor.specializationList.Card">
                     <label for="cardio">Cardiology</label>
                 </div>
                 <div class="col-md-12">
-                    <input id="neuro" type="checkbox">
+                    <input id="neuro" type="checkbox" ng-model="doctor.specializationList.Neur">
                     <label for="neuro">Neurology</label>
                 </div>
                 <div class="col-md-12">
-                    <input id="general" type="checkbox">
+                    <input id="general" type="checkbox" ng-model="doctor.specializationList.Gene">
                     <label for="general">Generalist</label>
                 </div>
                 <div class="col-md-12">
-                    <input id="surgeon" type="checkbox">
+                    <input id="surgeon" type="checkbox" ng-model="doctor.specializationList.Surg">
                     <label for="surgeon">Surgeon</label>
                 </div>
                 <div class="col-md-12">
-                    <input id="pedi" type="checkbox">
+                    <input id="pedi" type="checkbox" ng-model="doctor.specializationList.Pedi">
                     <label for="pedi">Pediatric Doctor</label>
                 </div>
                 <div class="col-md-12">
-                    <input id="trauma" type="checkbox">
+                    <input id="trauma" type="checkbox" ng-model="doctor.specializationList.Trau">
                     <label for="trauma">Trauma</label>
                 </div>
                 <div class="clearfix"></div>
             </div>
         </div>
         <div class="col-md-3 col-md-offset-9">
-            <button class="btn btn-warning">Update profile</button>
+            <button class="btn btn-warning" ng-click="updateProfile()">Update profile</button>
         </div>
     </div>
 </div>

@@ -1,14 +1,55 @@
 'use strict';
 
-app.controller('AuthController', function ($scope, $location, AuthService, toaster) {
+app.controller('AuthController', function (FURL, $firebase, $scope, $location, AuthService, toaster) {
 
     if (AuthService.signedIn()) {
         $location.path("/")
     }
 
+    $scope.isPatient = true;
+    $scope.userAge = 10;
+    var ref = new Firebase(FURL);
+
     $scope.register = function (user) {
+        user.type = $scope.isPatient ? "pat" : "doc";
         AuthService.register(user).then(function () {
-            toaster.pop('success', "Register succesfully");
+            if ($scope.isPatient) {
+                var fbPatProfiles = $firebase(ref.child('patientProfiles')).$asArray();
+                fbPatProfiles.$add({
+                    patientId: AuthService.user.uid,
+                    patientName: $scope.user.name,
+                    patientAge: parseInt($scope.userAge),
+                    cronicList: "",
+                    alergiesList: ""
+                });
+            } else {
+                var fbDocProfiles = $firebase(ref.child('doctorProfiles')).$asArray();
+                fbDocProfiles.$add({
+                    doctorId: AuthService.user.uid,
+                    doctorName: $scope.user.name,
+                    availableFromValue: 10,
+                    availableFromType: "AM",
+                    availableToValue: 4,
+                    availableToType: "PM",
+                    availableOn: {
+                        Mo: true,
+                        Tu: true,
+                        We: true,
+                        Th: true,
+                        Fr: true
+                    },
+                    specializationList: {
+                        Orl: false,
+                        Card: false,
+                        Neur: false,
+                        Gene: false,
+                        Surg: false,
+                        Pedi: false,
+                        Trau: false
+                    }
+                });
+            }
+            toaster.pop('success', "Register successfully");
             $location.path('/');
         }, function (err) {
             toaster.pop('error', "Oops, something went wrong!");

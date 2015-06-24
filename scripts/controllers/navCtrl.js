@@ -1,22 +1,24 @@
 'use strict';
 
-app.controller('NavController', function($scope, $location, AuthService, toaster) {
+app.controller('NavController', function($scope, $location, AuthService, toaster, $timeout) {
 
     $scope.currentUser = AuthService.user;
     $scope.signedIn = AuthService.signedIn;
 
-    if ($scope.signedIn()) {
-        do {
-            var userProfile = AuthService.user.profile;
-        }while (!userType);
+    window.setInterval(function() {
+        if ($scope.signedIn()) {
+            do {
+                var userProfile = AuthService.user.profile;
+            }while (!userProfile);
 
-        if (userProfile.type == "pat") {
-            $scope.isPatient = true;
-            $scope.patientName = userProfile.name;
-        } else {
-            $scope.isPatient = false;
+            if (userProfile.type == "pat") {
+                $scope.isPatient = true;
+                $scope.patientName = userProfile.name;
+            } else {
+                $scope.isPatient = false;
+            }
         }
-    }
+    }, 1000);
 
     $scope.logout = function () {
         AuthService.logout();

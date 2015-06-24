@@ -5,7 +5,7 @@
             <div class="input-group-addon">
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
             </div>
-            <input type="name" ng-model="user.name" placeholder="Name" class="form-control" required>
+            <input type="text" ng-model="user.name" placeholder="Name" class="form-control" required>
         </div><br>
 
         <div class="input-group">
@@ -20,6 +20,19 @@
                 <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
             </div>
             <input type="password" ng-model="user.password" placeholder="Password" class="form-control" required>
+        </div>
+
+        <div class="input-group">
+            <br>
+            <input type="checkbox" ng-model="isPatient" name="isDoctorChk" id="isDoctorChk">
+            <label for="isDoctorChk">&nbsp;&nbsp;I'm a patient</label>
+        </div>
+
+        <div ng-show="isPatient" class="input-group">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+            </div>
+            <input type="text" ng-model="userAge" placeholder="Age" class="form-control" value="">
         </div>
 
         <input type="submit" value="Register" class="btn btn-primary">
