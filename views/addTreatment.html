@@ -1,8 +1,10 @@
 <h2 class="text-center text-primary">Add Treatment</h2>
 <br/>
+
+
 <div class="panel col-md-6 col-md-offset-3">
     <div class="panel-header">
-        <h3 class="text-center">Luminita Cojocea</h3>
+        <h3 class="text-center">{{curentTreatment.patientName}}</h3>
         <br/>
     </div>
     <div class="panel-body">
@@ -11,7 +13,7 @@
                 <label for="patientName" class="">Patient Name</label>
             </div>
             <div class="col-md-10">
-                <input id="patientName" type="text" class="form-control" value="Luminita Cojocea" readonly="readonly"/>
+                <input id="patientName" type="text" class="form-control" ng-model="curentTreatment.patientName" readonly="readonly"/>
             </div>
         </div>
         <div class="col-md-12">
@@ -19,7 +21,7 @@
                 <label for="patientAge">Age</label>
             </div>
             <div class="col-md-10">
-                <input id="patientAge" type="text" class="form-control" value="24 years" readonly="readonly"/>
+                <input id="patientAge" type="text" class="form-control" ng-model="curentTreatment.patientAge" readonly="readonly"/>
             </div>
         </div>
 
@@ -28,7 +30,7 @@
                 <label for="patientCronic">Cronic Diseases</label>
             </div>
             <div class="col-md-10">
-                <input id="patientCronic" type="text" class="form-control" value="No cronic disease" readonly="readonly"/>
+                <input id="patientCronic" type="text" class="form-control" ng-model="curentTreatment.cronicList" readonly="readonly"/>
             </div>
         </div>
 
@@ -37,7 +39,7 @@
                 <label for="patientAlergies">Alergies</label>
             </div>
             <div class="col-md-10">
-                <input id="patientAlergies" type="text" class="form-control" value="Eritromicine and Claritromicine" readonly="readonly"/>
+                <input id="patientAlergies" type="text" class="form-control" ng-model="curentTreatment.alergiesList" readonly="readonly"/>
             </div>
         </div>
 
@@ -47,7 +49,7 @@
             </div>
 
             <div class="col-md-10">
-                <input id="patientDiagnosis" class="" value="Flu" />
+                <input id="patientDiagnosis" class="" ng-model="curentTreatment.diagnosis" />
             </div>
         </div>
         <div class="clearfix"></div>
@@ -64,25 +66,25 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td><input type="text" value="Nurofen"/></td>
-                    <td><input type="text" value="500"/></td>
-                    <td><input type="text" value="3x"/></td>
+                    <td><input type="text" ng-model="curentTreatment.medicine1.name"/></td>
+                    <td><input type="text" ng-model="curentTreatment.medicine1.dosage"/></td>
+                    <td><input type="text" ng-model="curentTreatment.medicine1.freq"/></td>
                 </tr>
                 <tr>
-                    <td><input type="text" value="Oxacilina"/></td>
-                    <td><input type="text" value="300"/></td>
-                    <td><input type="text" value="3x"/></td>
+                    <td><input type="text" ng-model="curentTreatment.medicine2.name"/></td>
+                    <td><input type="text" ng-model="curentTreatment.medicine2.dosage"/></td>
+                    <td><input type="text" ng-model="curentTreatment.medicine2.freq"/></td>
                 </tr>
                 <tr>
-                    <td><input type="text" value=""/></td>
-                    <td><input type="text" value=""/></td>
-                    <td><input type="text" value=""/></td>
+                    <td><input type="text" ng-model="curentTreatment.medicine3.name"/></td>
+                    <td><input type="text" ng-model="curentTreatment.medicine3.dosage"/></td>
+                    <td><input type="text" ng-model="curentTreatment.medicine3.freq"/></td>
                 </tr>
                 </tbody>
             </table>
         </div>
         <div class="col-md-3 col-md-offset-9">
-            <button class="btn btn-warning">Add Treatment</button>
+            <button class="btn btn-warning" ng-click="addTreatment()">Add Treatment</button>
         </div>
     </div>
 </div>

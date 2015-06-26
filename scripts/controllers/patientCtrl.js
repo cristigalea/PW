@@ -29,10 +29,21 @@ app.controller('PatientController', function($scope, $location, FURL, $firebase,
 
     $scope.doctorsList = $firebase(ref.child('doctorProfiles')).$asArray();
 
-    $scope.makeAppointment = function (key) {
+    $scope.makeAppointment = function (doctorId) {
 
-        //TO DO
-        //
-        console.log(key);
-    }
+        var curentDoctorPatients = $firebase(ref.child('doctorPatients')).$asArray();
+        curentDoctorPatients.$add({
+            doctorId: doctorId,
+            patientId: $scope.patient.patientId,
+            patientName: $scope.patient.patientName,
+            patientAge: $scope.patient.patientAge,
+            diagnostic: "",
+            isFirstCheckup: true,
+            isCronic: false,
+            isTakingTreatment: false,
+            isHealing: false,
+            needUrgentCare: false
+        });
+        toaster.pop('success', "Request Sent");
+    };
 });
