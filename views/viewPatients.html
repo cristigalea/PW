@@ -22,7 +22,7 @@
             <div class="col-md-6">Is healing: <span class="text-info">{{docPatient.isHealing}}</span></div>
 
             <div class="col-md-6">
-                <button class="btn btn-warning">View Treatments</button>
+                <button class="btn btn-warning" ng-click="viewTreatmentsForPaient(docPatient.patientId)">View Treatments</button>
             </div>
             <div class="col-md-6">
                 <button class="btn btn-warning" ng-click="addTreatmentForPatient(docPatient.patientId)">Add Treatment</button>

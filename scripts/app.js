@@ -51,7 +51,7 @@ var app = angular
                 templateUrl: 'views/doctorProfile.html',
                 controller: 'DoctorController'
             })
-            .when('/doctorTreatments', {
+            .when('/doctorTreatments/:patientId?', {
                 templateUrl: 'views/doctorTreatments.html',
                 controller: 'DoctorController'
             })
