@@ -4,22 +4,23 @@
     <div class="panel-header">
         <h3 class="text-center">
             From doctor
-            <select>
-                <option value="lcojo" selected="selected">Dr. John Doe</option>
-                <option value="apope">Dr. Cristi Galea</option>
-                <option value="mgeor">Dr. Jane Doe</option>
-                <option value="apop">All Doctors</option>
-
+            <select data-ng-model="selectedDoctorForTreatmentList">
+                <option data-ng-repeat="doc in doctorForTreatmentList" data-ng-value="doc">{{doc}}</option>
             </select>
         </h3>
         <br/>
     </div>
+
+    <!--<div ng-repeat="treat in patientTreatments">-->
+        <!--{{treat.patientName}}-->
+    <!--</div>-->
+
     <div class="panel-body">
-        <div class="col-md-12 patient-wrapper">
-            <div class="col-md-12 treat-diagnosis-name"><h3>Treatment for: <span class="text-info">Flu</span></h3></div>
-            <div class="col-md-6 treat-from">From: <span class="text-primary">10/6/2015</span></div>
-            <div class="col-md-6 treat-to">To: <span class="text-primary">15/6/2015</span></div>
-            <div class="col-md-12">
+        <div class="col-md-12 patient-wrapper" ng-repeat="patTreat in patientTreatments | filter: selectedDoctorForTreatmentList" ng-class="{'alert-danger' : patTreat.needUrgentCare}">
+            <div ng-hide="patTreat.needUrgentCare" class="col-md-12 treat-diagnosis-name"><h3>Treatment for: <span class="text-info">{{patTreat.diagnosis}}</span></h3></div>
+            <div ng-hide="patTreat.needUrgentCare" class="col-md-6 treat-from">From: <span class="text-primary">{{patTreat.treatmentStart}}</span></div>
+            <div ng-hide="patTreat.needUrgentCare" class="col-md-6 treat-to">To: <span class="text-primary">{{patTreat.treatmentEnd}}</span></div>
+            <div ng-hide="patTreat.needUrgentCare" class="col-md-12">
                 <table class="table">
                     <thead>
                     <tr>
@@ -30,98 +31,39 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>Nurofen</td>
-                        <td>500</td>
-                        <td>3x</td>
+                        <td>{{patTreat.medicine1.name}}</td>
+                        <td>{{patTreat.medicine1.dosage}}</td>
+                        <td>{{patTreat.medicine1.freq}}</td>
                     </tr>
                     <tr>
-                        <td>Oxacilina</td>
-                        <td>300</td>
-                        <td>3x</td>
+                        <td>{{patTreat.medicine2.name}}</td>
+                        <td>{{patTreat.medicine2.dosage}}</td>
+                        <td>{{patTreat.medicine2.freq}}</td>
                     </tr>
                     <tr>
-                        <td>Codeina</td>
-                        <td>500</td>
-                        <td>2x</td>
+                        <td>{{patTreat.medicine2.name}}</td>
+                        <td>{{patTreat.medicine2.dosage}}</td>
+                        <td>{{patTreat.medicine2.freq}}</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
 
-            <div class="col-md-6">
-                <button class="btn btn-info">Mark as taken for today</button>
+            <div ng-hide="patTreat.needUrgentCare" class="col-md-6" ng-show="patTreat.inProgress">
+                <button class="btn btn-info" ng-click="markForToday(patTreat)">Mark as taken for today</button>
             </div>
-            <div class="col-md-6">
-                <button class="btn btn-danger">Request urgent care</button>
+            <div ng-hide="patTreat.needUrgentCare" class="col-md-6" ng-show="patTreat.inProgress">
+                <button class="btn btn-danger" ng-click="requestUrgentCare(patTreat)">Request urgent care</button>
             </div>
-        </div>
 
-        <div class="col-md-12 patient-wrapper">
-            <div class="col-md-12 treat-diagnosis-name"><h3>Treatment for: <span class="text-info">Tonsilitis</span></h3></div>
-            <div class="col-md-6 treat-from">From: <span class="text-primary">8/3/2014</span></div>
-            <div class="col-md-6 treat-to">To: <span class="text-primary">8/3/2014</span></div>
-            <div class="col-md-12">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Medicine Name</th>
-                        <th>Dosage</th>
-                        <th>Frequency / day</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Nurofen</td>
-                        <td>500</td>
-                        <td>3x</td>
-                    </tr>
-                    <tr>
-                        <td>Ampicilina</td>
-                        <td>1000</td>
-                        <td>2x</td>
-                    </tr>
-                    <tr>
-                        <td>Gentamicina</td>
-                        <td>100</td>
-                        <td>2x</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
 
-        <div class="col-md-12 patient-wrapper">
-            <div class="col-md-12 treat-diagnosis-name"><h3>Treatment for: <span class="text-info">Flu</span></h3></div>
-            <div class="col-md-6 treat-from">From: <span class="text-primary">10/6/2015</span></div>
-            <div class="col-md-6 treat-to">To: <span class="text-primary">15/6/2015</span></div>
-            <div class="col-md-12">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Medicine Name</th>
-                        <th>Dosage</th>
-                        <th>Frequency / day</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Nurofen</td>
-                        <td>500</td>
-                        <td>3x</td>
-                    </tr>
-                    <tr>
-                        <td>Oxacilina</td>
-                        <td>300</td>
-                        <td>3x</td>
-                    </tr>
-                    <tr>
-                        <td>Codeina</td>
-                        <td>500</td>
-                        <td>2x</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+
+
+            <div ng-show="patTreat.needUrgentCare" class="col-md-12 text-center"><h3 class="">Alert for {{patTreat.diagnosis}}</h3></div>
+            <div ng-show="patTreat.needUrgentCare" class="col-md-6">Name: <span class=" text-bold">{{patTreat.patientName}}</span></div>
+            <div ng-show="patTreat.needUrgentCare" class="col-md-6">Age: <span class="">{{patTreat.patientAge}} years</span></div>
+            <div ng-show="patTreat.needUrgentCare" class="col-md-6 col-md-offset-3 text-center"><h3 class="">NEED URGENT CARE</h3></div>
+
         </div>
     </div>
 </div>

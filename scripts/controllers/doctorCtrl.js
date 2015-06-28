@@ -11,6 +11,7 @@ app.controller('DoctorController', function($scope, $location, FURL, $firebase, 
     /////////////////
     // DOCTOR PROFILE
     /////////////////
+
     ref.child('doctorProfiles')
         .orderByChild("doctorId")
         .startAt(currentUserId)
@@ -34,6 +35,7 @@ app.controller('DoctorController', function($scope, $location, FURL, $firebase, 
     ////////////////
     // VIEW PATIENTS
     ////////////////
+
     $scope.doctorPatients = $firebase(ref.child('doctorPatients')
         .orderByChild("doctorId")
         .startAt(currentUserId)
@@ -56,9 +58,6 @@ app.controller('DoctorController', function($scope, $location, FURL, $firebase, 
     $scope.doctorTreatments.$loaded(function (data) {
         $scope.patientUnderTreatmentList = [];
         for (var i = 0; i < data.length; i++) {
-
-            $scope.doctorTreatments[i].takenToday = $scope.doctorTreatments[i].lastTakenOn != (new Date()).toLocaleDateString() ? "NO" : "YES";
-
             //this is needed to populate the top dropdown selector
             if ($scope.patientUnderTreatmentList.indexOf(data[i].patientName) < 0) {
                 $scope.patientUnderTreatmentList.push(data[i].patientName);
@@ -77,6 +76,13 @@ app.controller('DoctorController', function($scope, $location, FURL, $firebase, 
             $scope.selectedPatientUnderTreatment = $scope.patientUnderTreatmentList[0] || "";
         }
     });
+
+    $scope.assistUrgency = function (treatment) {
+        var treat = ref.child('treatments').child(treatment.$id);
+        treat.update({needUrgentCare: false});
+
+        toaster.pop('success', "Marked as assisted");
+    };
 
 
     ////////////////
@@ -114,6 +120,8 @@ app.controller('DoctorController', function($scope, $location, FURL, $firebase, 
     }
 
     $scope.addTreatment = function() {
+        $scope.curentTreatment.doctorId = $scope.doctor.doctorId;
+        $scope.curentTreatment.doctorName = $scope.doctor.doctorName;
         $scope.curentTreatment.lastTakenOn = (new Date()).toLocaleDateString();
         $scope.curentTreatment.takenToday = "NO";
         $scope.doctorTreatments.$add($scope.curentTreatment);

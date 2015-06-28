@@ -11,14 +11,15 @@
         <br/>
     </div>
     <div class="panel-body">
-        <div class="col-md-12 patient-wrapper" data-ng-repeat="docTreatment in doctorTreatments|filter : selectedPatientUnderTreatment">
-            <div class="col-md-12 treat-diagnosis-name"><h3>Treatment for: <span class="text-info">{{docTreatment.diagnosis}}</span></h3></div>
-            <div class="col-md-6 treat-from">From: <span class="text-primary">{{docTreatment.treatmentStart}}</span></div>
-            <div class="col-md-6 treat-to">To: <span class="text-primary">{{docTreatment.treatmentEnd}}</span></div>
-            <div class="col-md-12">Treatment taken today: <span class="text-primary">{{docTreatment.takenToday}}</span></div>
-            <div class="clearfix"></div>
-            <br>
-            <div class="col-md-12">
+        <div class="col-md-12 patient-wrapper" data-ng-repeat="docTreatment in doctorTreatments|filter : selectedPatientUnderTreatment" ng-class="{'alert-danger' : docTreatment.needUrgentCare}">
+
+            <div ng-hide="docTreatment.needUrgentCare" class="col-md-12 treat-diagnosis-name"><h3>Treatment for: <span class="text-info">{{docTreatment.diagnosis}}</span></h3></div>
+            <div ng-hide="docTreatment.needUrgentCare" class="col-md-6 treat-from">From: <span class="text-primary">{{docTreatment.treatmentStart}}</span></div>
+            <div ng-hide="docTreatment.needUrgentCare" class="col-md-6 treat-to">To: <span class="text-primary">{{docTreatment.treatmentEnd}}</span></div>
+            <div ng-hide="docTreatment.needUrgentCare" class="col-md-12">Treatment last taken on: <span class="text-primary">{{docTreatment.lastTakenOn}}</span></div>
+            <div ng-hide="docTreatment.needUrgentCare" class="clearfix"></div>
+            <br ng-hide="docTreatment.needUrgentCare">
+            <div ng-hide="docTreatment.needUrgentCare" class="col-md-12">
                 <table class="table">
                     <thead>
                         <tr>
@@ -46,6 +47,17 @@
                     </tbody>
                 </table>
             </div>
+
+
+            <div ng-show="docTreatment.needUrgentCare" class="col-md-12 text-center"><h3 class="">Alert for {{docTreatment.diagnosis}}</h3></div>
+            <div ng-show="docTreatment.needUrgentCare" class="col-md-6">Name: <span class=" text-bold">{{docTreatment.patientName}}</span></div>
+            <div ng-show="docTreatment.needUrgentCare" class="col-md-6">Age: <span class="">{{docTreatment.patientAge}} years</span></div>
+            <div ng-show="docTreatment.needUrgentCare" class="col-md-6 col-md-offset-3 text-center"><h3 class="">NEED URGENT CARE</h3></div>
+            <div ng-show="docTreatment.needUrgentCare" class="col-md-6 col-md-offset-3 text-center">
+                <button class="btn btn-info" ng-click="assistUrgency(docTreatment)">Assist</button>
+            </div>
+
+
         </div>
     </div>
 </div>

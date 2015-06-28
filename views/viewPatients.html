@@ -8,7 +8,7 @@
         <br/>
     </div>
     <div class="panel-body" ng-repeat="docPatient in doctorPatients| filter:search">
-        <div class="col-md-12 patient-wrapper" ng-hide="docPatient.needUrgentCare">
+        <div class="col-md-12 patient-wrapper">
             <div class="col-md-6 patient-name"><h3 class="text-info">{{docPatient.patientName}}</h3></div>
             <div class="col-md-6 patient-header">Age: <span class="text-primary">{{docPatient.patientAge}} years</span></div>
 
@@ -19,22 +19,13 @@
             <div class="col-md-6">Is cronic: <span class="text-info">{{docPatient.isCronic}}</span></div>
 
             <div class="col-md-6">Taking treatment: <span class="text-info">{{docPatient.isTakingTreatment}}</span></div>
-            <div class="col-md-6">Is healing: <span class="text-info">{{docPatient.isHealing}}</span></div>
+            <div class="col-md-12">Is healing: <span class="text-info">{{docPatient.isHealing}}</span></div>
 
             <div class="col-md-6">
                 <button class="btn btn-warning" ng-click="viewTreatmentsForPaient(docPatient.patientId)">View Treatments</button>
             </div>
             <div class="col-md-6">
                 <button class="btn btn-warning" ng-click="addTreatmentForPatient(docPatient.patientId)">Add Treatment</button>
-            </div>
-        </div>
-        <div class="col-md-12 patient-wrapper alert-danger" ng-show="docPatient.needUrgentCare">
-            <div class="col-md-6 patient-name"><h3 class="">{{docPatient.patientName}}</h3></div>
-            <div class="col-md-6 patient-header">Age: <span class="">{{docPatient.patientAge}} years</span></div>
-            <div class="col-md-12 patient-diagnostic">Diagnostic: <span class=" text-bold">{{docPatient.diagnostic}}</span></div>
-            <div class="col-md-6 col-md-offset-3 text-center"><h3 class="">NEED URGENT CARE</h3></div>
-            <div class="col-md-6 col-md-offset-3 text-center">
-                <button class="btn btn-info">Assist</button>
             </div>
         </div>
     </div>

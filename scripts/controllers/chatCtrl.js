@@ -5,13 +5,18 @@ app.controller('ChatController', function($timeout, $scope, FURL, $firebase, toa
     var ref = new Firebase(FURL);
     var fbChatMessages = $firebase(ref.child('chatLogs')).$asArray();
 
+    fbChatMessages.$watch(function (data) {
+        $timeout(function() {
+            document.getElementsByClassName("chat-wrapper")[0].scrollTop = document.getElementsByClassName("chat-wrapper")[0].scrollHeight;
+        }, 100);
+    })
+
     $scope.chatMessages = fbChatMessages;
     do {
         $scope.currentUserId = AuthService.user.uid;
     } while (!$scope.currentUserId);
 
     $scope.sendMessage = function() {
-        console.log(AuthService.user);
         var newMessage = {
             messageText: $("#newMessageText").val(),
             senderName: AuthService.user.profile.name,
@@ -25,9 +30,6 @@ app.controller('ChatController', function($timeout, $scope, FURL, $firebase, toa
         } else {
             fbChatMessages.$add(newMessage);
             $("#newMessageText").val("");
-            $timeout(function() {
-                document.getElementsByClassName("chat-wrapper")[0].scrollTop = document.getElementsByClassName("chat-wrapper")[0].scrollHeight;
-            }, 100);
         }
     }
 });
